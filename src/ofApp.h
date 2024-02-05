@@ -4,6 +4,20 @@
 
 class ofApp : public ofBaseApp{
 
+	protected:
+		ofVbo vbo; // Vertex Buffer Object
+    	vector<ofVec3f> vertices; // Vertices for our particles
+        ofEasyCam cam; // Camera for rotating and zooming
+
+    float min, max, res; // Parameters for lambda
+    float X0; // Initial point
+    int N; // Number of iterations
+    float beta; // Parameter for the generating equation
+    
+    ofSoundPlayer player;
+    static constexpr size_t nBandsToGet = 128;
+    std::array<float, nBandsToGet> fftSmoothed{{0}};
+
 	public:
 		void setup() override;
 		void update() override;
