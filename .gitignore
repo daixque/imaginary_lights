@@ -1,0 +1,47 @@
+# Ignore build artifacts
+build/
+bin/
+obj/
+
+# Ignore IDE files
+.vscode/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+
+# Ignore compiled executables
+*.exe
+*.dll
+
+# Ignore macOS specific files
+.DS_Store
+
+# Ignore user-specific files
+*.user
+*.suo
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore dependencies
+/libs/
+/vendor/
+/node_modules/
+
+# Ignore Xcode specific files
+*.xcodeproj
+*.xcworkspace
+*.xcuserstate
+*.pbxproj
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xccheckout
+*.xcscmblueprint
+
+# Ignore Xcode build files
+DerivedData/
+build/
+*.build/
+
