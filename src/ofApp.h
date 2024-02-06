@@ -4,6 +4,7 @@
 #include "ofxVideoRecorder.h"
 #include "RectAnalyzer.hpp"
 #include "Attractor.hpp"
+#include "Field.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -33,6 +34,7 @@ class ofApp : public ofBaseApp{
     
     
     Attractor attractor;
+    Field field;
 
 	public:
 		void setup() override;

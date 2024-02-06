@@ -118,7 +118,8 @@ void ofApp::draw(){
     cam.begin();
     
     rectAnalyzer.draw(fftSmoothed);
-    attractor.draw();
+    //attractor.draw();
+    field.draw(fftSmoothed);
     
     cam.end();
 
