@@ -20,6 +20,38 @@ void ofApp::setup(){
     beta = 5.0f;
     
     player.load("imaginary+lights.mp3");
+    
+    
+    /*
+    ofSetFrameRate(30);
+    ofSetLogLevel(OF_LOG_VERBOSE);
+    vidGrabber.setDesiredFrameRate(30);
+    vidGrabber.initGrabber(640, 480);
+    
+    sampleRate = 44100;
+    channels = 2;
+    fileName = "testMovie";
+    fileExt = ".mov";
+    
+    vidRecorder.setVideoCodec("mpeg4");
+    vidRecorder.setVideoBitrate("800k");
+    vidRecorder.setAudioCodec("mp3");
+    vidRecorder.setAudioBitrate("192k");
+    vidRecorder.setup("output.mp4", ofGetWidth(), ofGetHeight(), 30); // Set the output file name and size
+    
+    
+    ofAddListener(vidRecorder.outputFileCompleteEvent, this, &ofApp::recordingComplete);
+    soundStream.setup(this, 0, channels, sampleRate, 256, 4);
+
+    ofSetWindowShape(vidGrabber.getWidth(), vidGrabber.getHeight()    );
+    bRecording = false;
+     */
+
+}
+
+
+void ofApp::recordingComplete(ofxVideoRecorderOutputFileCompleteEventArgs& args){
+    cout << "The recoded video file is now complete." << endl;
 }
 
 //--------------------------------------------------------------
@@ -33,6 +65,26 @@ void ofApp::update(){
         // take the max, either the smoothed or the incoming:
         if (fftSmoothed[i] < val[i]) fftSmoothed[i] = val[i];
     }
+    
+    /*
+    vidGrabber.update();
+    if(vidGrabber.isFrameNew() && bRecording){
+        ofPixels& pixcels = vidGrabber.getPixels();
+        bool success = vidRecorder.addFrame(pixcels);
+        if (!success) {
+            ofLogWarning("This frame was not added!");
+        }
+    }
+
+    // Check if the video recorder encountered any error while writing video frame or audio smaples.
+    if (vidRecorder.hasVideoError()) {
+        ofLogWarning("The video recorder failed to write some frames!");
+    }
+
+    if (vidRecorder.hasAudioError()) {
+        ofLogWarning("The video recorder failed to write some audio samples!");
+    }
+     */
 }
 
 //--------------------------------------------------------------
@@ -64,29 +116,27 @@ void ofApp::draw(){
 //    }
     
     cam.begin();
-    //for (float v : fftSmoothed) {
-    for (int i = 0; i < fftSmoothed.size(); i++) {
-        float v = fftSmoothed[i];
-        float deg = ofMap(v, 0.0f, 1.0f, 0.f, 360.f);
-        ofPushMatrix();
-        float c = ofMap(deg, 0.0f, 360.0f, 0, 255);
-        c = 255.0f;
-        ofSetColor(c, c, c, 30.0f);
-        glm::vec3 p = glm::vec3(0.0f, 0.0f, (float)-i);
-        ofTranslate(p);
-        ofRotate(deg, 0.0f, 0.0f, 1.0f);
-        //ofRectangle(100.0f, 100.0f, 200.0f, 200.0f);
-        ofNoFill();
-        ofDrawRectangle(0, 0, 200, 200);
-        ofPopMatrix();
-    }
+    
+    rectAnalyzer.draw(fftSmoothed);
+    attractor.draw();
     
     cam.end();
+
+    // Draw the image
+//    p.update();
+//    p.draw(0, 0);
+}
+
+void ofApp::audioIn(float *input, int bufferSize, int nChannels){
+    if(bRecording)
+        vidRecorder.addAudioSamples(input, bufferSize, nChannels);
 }
 
 //--------------------------------------------------------------
 void ofApp::exit(){
 
+//    ofRemoveListener(vidRecorder.outputFileCompleteEvent, this, &ofApp::recordingComplete);
+//    vidRecorder.close();
 }
 
 //--------------------------------------------------------------
@@ -103,6 +153,31 @@ void ofApp::keyReleased(int key){
         case 'e':
             player.stop();
             break;
+
+        /*
+        case 'r':
+            bRecording = !bRecording;
+            if(bRecording && !vidRecorder.isInitialized()) {
+                vidRecorder.setup(fileName+ofGetTimestampString()+fileExt, vidGrabber.getWidth(), vidGrabber.getHeight(), 30, sampleRate, channels);
+    //          vidRecorder.setup(fileName+ofGetTimestampString()+fileExt, vidGrabber.getWidth(), vidGrabber.getHeight(), 30); // no audio
+    //            vidRecorder.setup(fileName+ofGetTimestampString()+fileExt, 0,0,0, sampleRate, channels); // no video
+    //          vidRecorder.setupCustomOutput(vidGrabber.getWidth(), vidGrabber.getHeight(), 30, sampleRate, channels, "-vcodec mpeg4 -b 1600k -acodec mp2 -ab 128k -f mpegts udp://localhost:1234"); // for custom ffmpeg output string (streaming, etc)
+
+                // Start recording
+                vidRecorder.start();
+            }
+            else if(!bRecording && vidRecorder.isInitialized()) {
+                vidRecorder.setPaused(true);
+            }
+            else if(bRecording && vidRecorder.isInitialized()) {
+                vidRecorder.setPaused(false);
+            }
+            break;
+        case 'c':
+            bRecording = false;
+            vidRecorder.close();
+            break;
+            */
             
         default:
             break;
