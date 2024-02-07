@@ -9,6 +9,7 @@
 #include "CameraMovement.hpp"
 #include "RandomCubes.hpp"
 #include "GlobalSettings.hpp"
+#include "RandomRectangles.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -44,6 +45,7 @@ class ofApp : public ofBaseApp{
     Attractor attractor;
     Field field;
     RandomCubes cubes;
+    RandomRectangles rects;
 
 	public:
 		void setup() override;

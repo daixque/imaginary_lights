@@ -124,11 +124,12 @@ void ofApp::draw(){
     //cam.begin();
     cameraMovement.begin(timer.getElapsedTime());
     
-    rectAnalyzer.draw(fftSmoothed);
+    //rectAnalyzer.draw(fftSmoothed);
     //attractor.draw();
-    field.draw(fftSmoothed);
+    //field.draw(fftSmoothed);
     
     //cubes.draw();
+    rects.draw();
     
     //cam.end();
     cameraMovement.end();

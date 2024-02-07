@@ -23,8 +23,9 @@ public:
     ofColor nude = ofColor(238, 231, 218);
     ofColor khaki = ofColor(175, 200, 173);
     ofColor rose = ofColor(218, 12, 129);
-    ofColor& backgroundColor = rose;
+    ofColor& backgroundColor = nude;
     ofColor lineColor = ofColor(255, 255, 255, 128);
+    ofColor polygonColor = ofColor(255, 255, 255, 30);
     //ofColor lineColor = ofColor(0, 0, 0, 128);
     
 public:

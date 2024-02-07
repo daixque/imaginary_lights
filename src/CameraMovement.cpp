@@ -66,7 +66,7 @@ void CameraMovement::begin(float time)
     cam.setPosition(data.position);
     cam.lookAt(data.direction);
     
-    ofLog() << "time: " << time << ", pos: " << data.position << ", lookat: " << data.direction;
+    //ofLog() << "time: " << time << ", pos: " << data.position << ", lookat: " << data.direction;
 }
 
 
