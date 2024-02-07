@@ -8,18 +8,16 @@
 #include "RectAnalyzer.hpp"
 
 void RectAnalyzer::draw(std::array<float, 128>& fftSmoothed) {
-    
+    float c = 255.0f;
+    ofSetColor(c, c, c, 30.0f);
     for (int i = 0; i < fftSmoothed.size(); i++) {
         float v = fftSmoothed[i];
         float deg = ofMap(v, 0.0f, 1.0f, 0.f, 360.f);
         
         ofPushMatrix();
-        float c = ofMap(deg, 0.0f, 360.0f, 0, 255);
-        c = 255.0f;
-        ofSetColor(c, c, c, 30.0f);
         ofRotate(deg, 0.0f, 0.0f, 1.0f);
         ofPushMatrix();
-        glm::vec3 p = glm::vec3(-100.0f, -100.0f, (float)-i);
+        glm::vec3 p = glm::vec3(-100.0f, -100.0f, (float)-i * 20.0f);
         ofTranslate(p);
         //ofRectangle(100.0f, 100.0f, 200.0f, 200.0f);
         ofNoFill();

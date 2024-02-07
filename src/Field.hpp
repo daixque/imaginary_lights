@@ -13,9 +13,12 @@
 class Field {
 protected:
     ofImage image;
+    ofMesh mesh;
+    ofShader shader;
     
 public:
     Field();
+    void setup();
     void draw(std::array<float, 128>& fftSmoothed);
 };
 

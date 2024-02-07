@@ -46,7 +46,10 @@ void ofApp::setup(){
     ofSetWindowShape(vidGrabber.getWidth(), vidGrabber.getHeight()    );
     bRecording = false;
      */
-
+    cout << "OpenGL version :" << glGetString(GL_VERSION) << endl;
+    cout << "GLSL version :" << glGetString(GL_SHADING_LANGUAGE_VERSION) << endl;
+    
+    field.setup();
 }
 
 
@@ -92,7 +95,8 @@ void ofApp::draw(){
     // Draw your points here
 
     // Draw the VBO as points
-    //vbo.draw(GL_POINTS, 0, vertices.size());
+//    ofSetColor(255, 255, 255);
+//    vbo.draw(GL_POINTS, 0, vertices.size());
 
 
 
@@ -150,9 +154,13 @@ void ofApp::keyReleased(int key){
     switch (key) {
         case 's':
             player.play();
+            timer.start();
             break;
         case 'e':
             player.stop();
+            break;
+        case 't':
+            ofLog() << "Time: " << timer.getElapsedTime();
             break;
 
         /*
