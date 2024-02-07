@@ -9,8 +9,9 @@
 #define Field_hpp
 
 #include "ofMain.h"
+#include "DrawableObject.hpp"
 
-class Field {
+class Field : DrawableObject {
 protected:
     ofImage image;
     ofMesh mesh;

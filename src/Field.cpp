@@ -7,7 +7,7 @@
 
 #include "Field.hpp"
 
-Field::Field() {
+Field::Field() : DrawableObject() {
     image.load("image.jpg");
     
     mesh.setMode(OF_PRIMITIVE_LINES);

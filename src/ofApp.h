@@ -7,6 +7,7 @@
 #include "Field.hpp"
 #include "Timer.h"
 #include "CameraMovement.hpp"
+#include "RandomCubes.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -41,6 +42,7 @@ class ofApp : public ofBaseApp{
     
     Attractor attractor;
     Field field;
+    RandomCubes cubes;
 
 	public:
 		void setup() override;

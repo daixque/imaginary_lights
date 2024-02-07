@@ -9,8 +9,9 @@
 #define Atractor_hpp
 
 #include "ofMain.h"
+#include "DrawableObject.hpp"
 
-class Attractor {
+class Attractor : DrawableObject {
 protected:
     float pres, xxmin, xxmax, yymin, yymax; // Parameters for scaling
     float a, b, c, d, e; // Control parameters

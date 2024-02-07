@@ -127,6 +127,8 @@ void ofApp::draw(){
     //attractor.draw();
     field.draw(fftSmoothed);
     
+    cubes.draw();
+    
     //cam.end();
     cameraMovement.end();
 

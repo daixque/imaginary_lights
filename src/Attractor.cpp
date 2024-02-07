@@ -7,7 +7,7 @@
 
 #include "Attractor.hpp"
 
-Attractor::Attractor() {
+Attractor::Attractor() : DrawableObject() {
     
     // Initialize parameters
     pres = 1000.0f;

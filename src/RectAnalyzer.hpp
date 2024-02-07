@@ -9,9 +9,11 @@
 #define RectAnalyzer_hpp
 
 #include "ofMain.h"
+#include "DrawableObject.hpp"
 
-class RectAnalyzer {
+class RectAnalyzer : DrawableObject {
 public:
+    RectAnalyzer();
     void draw(std::array<float, 128>& fftSmoothed);
 };
 

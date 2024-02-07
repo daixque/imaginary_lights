@@ -7,6 +7,10 @@
 
 #include "RectAnalyzer.hpp"
 
+RectAnalyzer::RectAnalyzer() : DrawableObject() {
+    
+}
+
 void RectAnalyzer::draw(std::array<float, 128>& fftSmoothed) {
     float c = 255.0f;
     ofSetColor(c, c, c, 30.0f);
