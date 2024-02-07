@@ -5,6 +5,8 @@
 #include "RectAnalyzer.hpp"
 #include "Attractor.hpp"
 #include "Field.hpp"
+#include "Timer.h"
+#include "CameraMovement.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -20,6 +22,9 @@ class ofApp : public ofBaseApp{
     
     ofVbo vbo; // Vertex Buffer Object
     vector<ofVec3f> vertices; // Vertices for our particles
+    
+    Timer timer;
+    
     ofEasyCam cam; // Camera for rotating and zooming
 
     float min, max, res; // Parameters for lambda
@@ -32,6 +37,7 @@ class ofApp : public ofBaseApp{
     std::array<float, nBandsToGet> fftSmoothed{{0}};
     RectAnalyzer rectAnalyzer;
     
+    CameraMovement cameraMovement;
     
     Attractor attractor;
     Field field;

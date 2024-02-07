@@ -20,6 +20,7 @@ void ofApp::setup(){
     beta = 5.0f;
     
     player.load("imaginary+lights.mp3");
+    cameraMovement.loadCSV("camera.csv");
     
     
     /*
@@ -119,13 +120,15 @@ void ofApp::draw(){
 //        }
 //    }
     
-    cam.begin();
+    //cam.begin();
+    cameraMovement.begin(timer.getElapsedTime());
     
     rectAnalyzer.draw(fftSmoothed);
     //attractor.draw();
     field.draw(fftSmoothed);
     
-    cam.end();
+    //cam.end();
+    cameraMovement.end();
 
     // Draw the image
 //    p.update();

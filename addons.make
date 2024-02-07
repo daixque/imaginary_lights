@@ -1,2 +1,3 @@
+ofxCsv
 ofxOsc
 ofxVideoRecorder
