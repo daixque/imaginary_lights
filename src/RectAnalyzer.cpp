@@ -13,7 +13,7 @@ RectAnalyzer::RectAnalyzer() : DrawableObject() {
 
 void RectAnalyzer::draw(std::array<float, 128>& fftSmoothed) {
     float c = 255.0f;
-    ofSetColor(c, c, c, 30.0f);
+    ofSetColor(GlobalSettings::getInstance().lineColor);
     for (int i = 0; i < fftSmoothed.size(); i++) {
         float v = fftSmoothed[i];
         float deg = ofMap(v, 0.0f, 1.0f, 0.f, 360.f);

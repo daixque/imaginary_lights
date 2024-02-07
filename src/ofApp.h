@@ -8,6 +8,7 @@
 #include "Timer.h"
 #include "CameraMovement.hpp"
 #include "RandomCubes.hpp"
+#include "GlobalSettings.hpp"
 
 class ofApp : public ofBaseApp{
 

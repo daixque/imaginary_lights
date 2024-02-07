@@ -62,6 +62,15 @@ void Field::draw(std::array<float, 128>& fftSmoothed) {
     shader.begin();
     shader.setUniform1f("time", ofGetElapsedTimef());
     
+    ofColor color = GlobalSettings::getInstance().lineColor;
+    // Convert the color to a normalized vector
+    ofVec4f colorVec(color.r / 255.0f, color.g / 255.0f, color.b / 255.0f, color.a / 255.0f);
+    shader.setUniform4f("color", colorVec);
+
+    // Pass the color to the shader
+    shader.begin();
+    shader.setUniform4f("u_color", colorVec);
+    
     mesh.drawWireframe();
     
     shader.end();

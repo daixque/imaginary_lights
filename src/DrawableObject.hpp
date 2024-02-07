@@ -9,6 +9,7 @@
 #define DrawableObject_hpp
 
 #include "ofMain.h"
+#include "GlobalSettings.hpp"
 
 class DrawableObject {
 protected:

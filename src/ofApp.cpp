@@ -119,6 +119,7 @@ void ofApp::draw(){
 //            // ofDrawCircle(ofMap(x, 0, 1, ofGetHeight(), 0), ofMap(lambda, min, max, 0, ofGetWidth()), 1);
 //        }
 //    }
+    ofBackground(GlobalSettings::getInstance().backgroundColor);
     
     //cam.begin();
     cameraMovement.begin(timer.getElapsedTime());
@@ -127,7 +128,7 @@ void ofApp::draw(){
     //attractor.draw();
     field.draw(fftSmoothed);
     
-    cubes.draw();
+    //cubes.draw();
     
     //cam.end();
     cameraMovement.end();
