@@ -14,6 +14,7 @@
 class RectAnalyzer : public DrawableObject {
 public:
     RectAnalyzer();
+    void setup(Timer* timer) override;
     void draw(std::array<float, 128>& fftSmoothed);
 };
 

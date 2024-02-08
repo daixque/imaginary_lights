@@ -6,7 +6,7 @@
 #include "Attractor.hpp"
 #include "Field.hpp"
 #include "Timer.h"
-#include "CameraMovement.hpp"
+//#include "CameraMovement.hpp"
 #include "RandomCubes.hpp"
 #include "GlobalSettings.hpp"
 #include "RandomRectangles.hpp"
@@ -29,18 +29,13 @@ class ofApp : public ofBaseApp{
     Timer timer;
     
     ofEasyCam cam; // Camera for rotating and zooming
-
-    float min, max, res; // Parameters for lambda
-    float X0; // Initial point
-    int N; // Number of iterations
-    float beta; // Parameter for the generating equation
     
     ofSoundPlayer player;
     static constexpr size_t nBandsToGet = 128;
     std::array<float, nBandsToGet> fftSmoothed{{0}};
     RectAnalyzer rectAnalyzer;
     
-    CameraMovement cameraMovement;
+//    CameraMovement cameraMovement;
     int scene;
     
     Attractor attractor;

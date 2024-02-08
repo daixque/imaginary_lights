@@ -18,6 +18,7 @@ protected:
     ofImage image;
 public:
     RandomCubes();
+    void setup(Timer* timer) override;
     void draw();
 };
 

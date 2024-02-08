@@ -45,11 +45,15 @@ RandomRectangles::RandomRectangles() {
     }
 }
 
-void RandomRectangles::setup() {
-    
+void RandomRectangles::setup(Timer* timer) {
+    DrawableObject::setup(timer);
 }
 
 void RandomRectangles::draw() {
+    if (!timer) return;
+    
+    cameraMovement.begin(timer->getElapsedTime());
+    
     ofBackground(GlobalSettings::getInstance().khaki);
     ofPushMatrix();
     //ofSetColor(GlobalSettings::getInstance().lineColor);
@@ -57,6 +61,8 @@ void RandomRectangles::draw() {
     ofTranslate(position);
     rectangles.draw();
     ofPopMatrix();
+    
+    cameraMovement.end();
 }
 
 void RandomRectangles::reset() {

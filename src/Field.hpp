@@ -19,7 +19,7 @@ protected:
     
 public:
     Field();
-    void setup();
+    void setup(Timer* timer) override;
     void draw(std::array<float, 128>& fftSmoothed);
 };
 

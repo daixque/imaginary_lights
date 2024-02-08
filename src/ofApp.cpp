@@ -2,26 +2,9 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    // Create 10,000 particles at random positions
-    for(int i = 0; i < 10000; i++){
-        vertices.push_back(ofVec3f(ofRandom(-500, 500), ofRandom(-500, 500), ofRandom(-500, 500)));
-    }
-
-    // Set the vertices in the VBO
-    vbo.setVertexData(&vertices[0], vertices.size(), GL_STATIC_DRAW);
-
-
-    // Initialize parameters
-    min = 0.0f;
-    max = 125.f;
-    res = 1024.0f;
-    X0 = 0.5f;
-    N = 3000;
-    beta = 5.0f;
-    
     scene = 1;
     player.load("imaginary+lights.mp3");
-    cameraMovement.loadCSV("camera.csv");
+    //cameraMovement.loadCSV("camera.csv");
     
     
     /*
@@ -51,7 +34,11 @@ void ofApp::setup(){
     cout << "OpenGL version :" << glGetString(GL_VERSION) << endl;
     cout << "GLSL version :" << glGetString(GL_SHADING_LANGUAGE_VERSION) << endl;
     
-    field.setup();
+    
+    rects.setup(&timer);
+    field.setup(&timer);
+    cubes.setup(&timer);
+    rectAnalyzer.setup(&timer);
 }
 
 
@@ -94,12 +81,13 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    //ofBackground(GlobalSettings::getInstance().backgroundColor);
-    
     //cam.begin();
-    cameraMovement.begin(timer.getElapsedTime());
+    //cameraMovement.begin(timer.getElapsedTime());
     
     switch (scene) {
+        case 1:
+            rectAnalyzer.draw(fftSmoothed);
+            break;
         case 2:
             field.draw(fftSmoothed);
             break;
@@ -109,24 +97,12 @@ void ofApp::draw(){
         case 4:
             cubes.draw();
             break;
-        case 1:
         default:
-            rectAnalyzer.draw(fftSmoothed);
             break;
     }
-    //rectAnalyzer.draw(fftSmoothed);
-    //attractor.draw();
-    //field.draw(fftSmoothed);
-    
-    //cubes.draw();
-    //rects.draw();
     
     //cam.end();
-    cameraMovement.end();
-
-    // Draw the image
-//    p.update();
-//    p.draw(0, 0);
+    //cameraMovement.end();
 }
 
 void ofApp::audioIn(float *input, int bufferSize, int nChannels){
@@ -156,6 +132,9 @@ void ofApp::keyReleased(int key){
         case 'e':
             player.stop();
             break;
+        case 'a':
+            timer.reset();
+            break;
         case 't':
             ofLog() << "Time: " << timer.getElapsedTime();
             break;
@@ -172,6 +151,9 @@ void ofApp::keyReleased(int key){
             break;
         case '4':
             scene = 4;
+            break;
+        case '0':
+            scene = 0;
             break;
 
         /*

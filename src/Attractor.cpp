@@ -24,7 +24,14 @@ Attractor::Attractor() : DrawableObject() {
     iter2 = 100;
 }
 
+void Attractor::setup(Timer* timer) {
+    DrawableObject::setup(timer);
+}
+
 void Attractor::draw() {
+    if (!timer) return;
+    
+    cameraMovement.begin(timer->getElapsedTime());
     
     float xinc = pres / (xxmax - xxmin); // Controls x-pixel position
     float yinc = pres / (yymax - yymin); // Controls y-pixel position
@@ -69,4 +76,5 @@ void Attractor::draw() {
             }
         }
     }
+    cameraMovement.end();
 }

@@ -46,11 +46,16 @@ Field::Field() : DrawableObject() {
     }
 }
 
-void Field::setup() {
+void Field::setup(Timer* timer) {
+    DrawableObject::setup(timer);
     shader.load("shaders/shader.vert", "shaders/shader.frag");
 }
 
 void Field::draw(std::array<float, 128>& fftSmoothed) {
+    if (!timer) return;
+    
+    cameraMovement.begin(timer->getElapsedTime());
+    
     ofBackground(GlobalSettings::getInstance().liteGray);
     ofPushMatrix();
     
@@ -104,4 +109,6 @@ void Field::draw(std::array<float, 128>& fftSmoothed) {
     // */
     
     ofPopMatrix();
+    
+    cameraMovement.end();
 }

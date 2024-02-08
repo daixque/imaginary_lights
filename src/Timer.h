@@ -23,7 +23,7 @@ public:
     }
 
     void reset() {
-        started = false;
+        start();
     }
 
 private:

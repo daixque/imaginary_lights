@@ -25,7 +25,15 @@ RandomCubes::RandomCubes() : DrawableObject() {
     shader.load("shaders/cube_shader.vert", "shaders/cube_shader.frag");
 }
 
+void RandomCubes::setup(Timer* timer) {
+    DrawableObject::setup(timer);
+}
+
 void RandomCubes::draw() {
+    if (!timer) return;
+    
+    cameraMovement.begin(timer->getElapsedTime());
+    
     ofBackground(GlobalSettings::getInstance().nude);
     image.draw(-image.getWidth() / 2.0, -image.getHeight() / 2.0, -1000);
     image.draw(-image.getWidth() / 2.0, -image.getHeight() / 2.0, 100);
@@ -36,4 +44,6 @@ void RandomCubes::draw() {
         box.drawWireframe();
     }
     shader.end();
+    
+    cameraMovement.end();
 }

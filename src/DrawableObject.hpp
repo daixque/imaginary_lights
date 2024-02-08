@@ -10,15 +10,19 @@
 
 #include "ofMain.h"
 #include "GlobalSettings.hpp"
+#include "CameraMovement.hpp"
+#include "Timer.h"
 
 class DrawableObject {
 protected:
     glm::vec3 position;
+    CameraMovement cameraMovement;
+    Timer* timer;
     
 public:
     DrawableObject();
     
-    void setup();
+    virtual void setup(Timer* timer);
     void draw();
 };
 

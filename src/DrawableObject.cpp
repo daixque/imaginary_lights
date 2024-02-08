@@ -11,8 +11,9 @@ DrawableObject::DrawableObject() {
     position = glm::vec3(0.0f, 0.0f, 0.0f);
 }
 
-void DrawableObject::setup() {
-    
+void DrawableObject::setup(Timer* timer) {
+    cameraMovement.loadCSV("camera.csv");
+    this->timer = timer;
 }
 
 void DrawableObject::draw() {
