@@ -41,6 +41,7 @@ class ofApp : public ofBaseApp{
     RectAnalyzer rectAnalyzer;
     
     CameraMovement cameraMovement;
+    int scene;
     
     Attractor attractor;
     Field field;

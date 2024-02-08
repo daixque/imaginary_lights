@@ -8,23 +8,28 @@
 #include "RandomCubes.hpp"
 
 RandomCubes::RandomCubes() : DrawableObject() {
-    N = 100; // Set the number of cubes here
+    int gridSize = 10;
+    float spacing = 200;
+    float baseSize = 10;
+    float height = 2000;
 
-    // Generate new cubes and colors
-    for(int i = 0; i < N; i++){
-        ofBoxPrimitive cube;
-        cube.setPosition(ofRandomWidth(), ofRandomHeight(), ofRandom(-500, 500));
-        cubes.push_back(cube);
-
-        ofColor c;
-        c.set(ofRandom(255), ofRandom(255), ofRandom(255), 0.3 * 255);
-        colors.push_back(c);
+    for (int i = 0; i < gridSize; i++) {
+        for (int j = 0; j < gridSize; j++) {
+            ofBoxPrimitive box;
+            box.set(baseSize, height, baseSize);
+            box.setPosition(i * spacing - (gridSize * spacing / 2), 0, -j * spacing);
+            boxes.push_back(box);
+        }
     }
+    shader.load("shaders/cube_shader.vert", "shaders/cube_shader.frag");
 }
 
 void RandomCubes::draw() {
-    for(int i = 0; i < N; i++){
-        ofSetColor(colors[i]);
-        cubes[i].draw();
+    ofBackground(GlobalSettings::getInstance().nude);
+    shader.begin();
+    for (auto& box : boxes) {
+        box.draw();
+        box.drawWireframe();
     }
+    shader.end();
 }

@@ -13,9 +13,8 @@
 
 class RandomCubes : public DrawableObject {
 protected:
-    int N;
-    vector<ofBoxPrimitive> cubes;
-    vector<ofColor> colors;
+    std::vector<ofBoxPrimitive> boxes;
+    ofShader shader;
 public:
     RandomCubes();
     void draw();

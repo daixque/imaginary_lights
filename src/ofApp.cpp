@@ -19,6 +19,7 @@ void ofApp::setup(){
     N = 3000;
     beta = 5.0f;
     
+    scene = 1;
     player.load("imaginary+lights.mp3");
     cameraMovement.loadCSV("camera.csv");
     
@@ -93,40 +94,29 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    // Draw your points here
-
-    // Draw the VBO as points
-//    ofSetColor(255, 255, 255);
-//    vbo.draw(GL_POINTS, 0, vertices.size());
-
-
-
-    // Scan lambda
-//    for(float lambda = min; lambda <= max; lambda += (max-min) / res){
-//        float x = X0; // Set initial point
-//
-//        // Iteration loop
-//        for(int i = 1; i <= N; i++){
-//            // Generating equation
-//            x = lambda * x * pow(1 + x, -beta);
-//
-//            // Set color based on iteration
-//            float c = ofMap(i, 1, N, 0, 255);
-//            ofSetColor(c, c, c);
-//
-//            // Plot dot at point (lambda, x)
-//            ofDrawCircle(ofMap(lambda, min, max, 0, ofGetWidth()), ofMap(x, 0, 1, 0, ofGetHeight()), 1);
-//            // ofDrawCircle(ofMap(x, 0, 1, ofGetHeight(), 0), ofMap(lambda, min, max, 0, ofGetWidth()), 1);
-//        }
-//    }
-    ofBackground(GlobalSettings::getInstance().backgroundColor);
+    //ofBackground(GlobalSettings::getInstance().backgroundColor);
     
     //cam.begin();
     cameraMovement.begin(timer.getElapsedTime());
     
+    switch (scene) {
+        case 2:
+            field.draw(fftSmoothed);
+            break;
+        case 3:
+            rects.draw();
+            break;
+        case 4:
+            cubes.draw();
+            break;
+        case 1:
+        default:
+            rectAnalyzer.draw(fftSmoothed);
+            break;
+    }
     //rectAnalyzer.draw(fftSmoothed);
     //attractor.draw();
-    field.draw(fftSmoothed);
+    //field.draw(fftSmoothed);
     
     //cubes.draw();
     //rects.draw();
@@ -168,6 +158,20 @@ void ofApp::keyReleased(int key){
             break;
         case 't':
             ofLog() << "Time: " << timer.getElapsedTime();
+            break;
+        
+        case '1':
+            scene = 1;
+            break;
+        case '2':
+            scene = 2;
+            break;
+        case '3':
+            scene = 3;
+            rects.reset();
+            break;
+        case '4':
+            scene = 4;
             break;
 
         /*

@@ -12,6 +12,8 @@ RectAnalyzer::RectAnalyzer() : DrawableObject() {
 }
 
 void RectAnalyzer::draw(std::array<float, 128>& fftSmoothed) {
+    ofBackground(GlobalSettings::getInstance().dark);
+    
     float c = 255.0f;
     ofSetColor(GlobalSettings::getInstance().lineColor);
     for (int i = 0; i < fftSmoothed.size(); i++) {

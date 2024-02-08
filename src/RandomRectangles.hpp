@@ -21,6 +21,7 @@ public:
     RandomRectangles();
     void setup();
     void draw();
+    void reset();
 };
 
 #endif /* RandomRectangles_hpp */

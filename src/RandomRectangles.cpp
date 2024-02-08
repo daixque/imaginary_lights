@@ -50,10 +50,15 @@ void RandomRectangles::setup() {
 }
 
 void RandomRectangles::draw() {
+    ofBackground(GlobalSettings::getInstance().rose);
     ofPushMatrix();
     //ofSetColor(GlobalSettings::getInstance().lineColor);
-    float z = ofGetFrameNum();
-    ofTranslate(glm::vec3(0, 0, z));
+    position.z += 1;
+    ofTranslate(position);
     rectangles.draw();
     ofPopMatrix();
+}
+
+void RandomRectangles::reset() {
+    position = glm::vec3(0.0, 0.0, 0.0);
 }

@@ -51,12 +51,13 @@ void Field::setup() {
 }
 
 void Field::draw(std::array<float, 128>& fftSmoothed) {
+    ofBackground(GlobalSettings::getInstance().khaki);
     ofPushMatrix();
     
-    ofTranslate(glm::vec3(-image.getWidth() / 2.0, 0, 0));
+    ofTranslate(glm::vec3(-image.getWidth() / 2.0, 0, -image.getHeight() / 2.0));
     
     float yScale = (fftSmoothed[2] + 0.2);
-    ofScale(glm::vec3(1.0f, yScale, 1.0f));
+    ofScale(glm::vec3(2.0f, yScale, 2.0f));
     
     
     shader.begin();
