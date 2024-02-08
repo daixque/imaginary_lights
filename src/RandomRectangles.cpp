@@ -20,12 +20,6 @@ RandomRectangles::RandomRectangles() {
         float z = -ofRandomHeight() * 10 + 50;
         float w = 100;
         float h = 100;
-//        
-//        // Add vertices for the rectangle
-//        rectangles.addVertex(ofVec3f(x, y, z));
-//        rectangles.addVertex(ofVec3f(x + w, y, z));
-//        rectangles.addVertex(ofVec3f(x + w, y, z + h));
-//        rectangles.addVertex(ofVec3f(x, y, z + h));
         
         // Generate a random color
         ofColor c = GlobalSettings::getInstance().lineColor;

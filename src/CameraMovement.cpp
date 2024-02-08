@@ -20,7 +20,7 @@ void CameraMovement::loadCSV(const std::string& filename) {
             data.position = ofVec3f(ofToFloat(csv[i][1]), ofToFloat(csv[i][2]), ofToFloat(csv[i][3]));
             data.direction = ofVec3f(ofToFloat(csv[i][4]), ofToFloat(csv[i][5]), ofToFloat(csv[i][6]));
             cameraData.push_back(data);
-            ofLog() << "pos: " << data.position;
+            //ofLog() << "pos: " << data.position;
         }
     } else {
         ofLogError() << "Failed to load CSV file: " << filename;
@@ -51,12 +51,7 @@ CameraData CameraMovement::getCameraDataAtTime(float time) {
     result.position = prev.position.getInterpolated(it->position, t);
     result.direction = prev.direction.getInterpolated(it->direction, t);
     return result;
-//    for (const auto& data : cameraData) {
-//        if (data.time == time) {
-//            return data;
-//        }
-//    }
-//    return CameraData(); // Return default CameraData if time not found
+
 }
 
 void CameraMovement::begin(float time)

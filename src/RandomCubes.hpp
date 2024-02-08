@@ -11,7 +11,7 @@
 #include "ofMain.h"
 #include "DrawableObject.hpp"
 
-class RandomCubes : DrawableObject {
+class RandomCubes : public DrawableObject {
 protected:
     int N;
     vector<ofBoxPrimitive> cubes;

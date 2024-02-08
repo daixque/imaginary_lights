@@ -91,7 +91,7 @@ void Field::draw(std::array<float, 128>& fftSmoothed) {
     }
 
     tempMesh.drawWireframe();
-     */
+    // */
     
     ofPopMatrix();
 }

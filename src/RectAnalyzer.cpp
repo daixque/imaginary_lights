@@ -23,7 +23,6 @@ void RectAnalyzer::draw(std::array<float, 128>& fftSmoothed) {
         ofPushMatrix();
         glm::vec3 p = glm::vec3(-100.0f, -100.0f, (float)-i * 20.0f);
         ofTranslate(p);
-        //ofRectangle(100.0f, 100.0f, 200.0f, 200.0f);
         ofNoFill();
         ofDrawRectangle(0, 0, 200, 200);
         ofPopMatrix();

@@ -11,7 +11,7 @@
 #include "ofMain.h"
 #include "DrawableObject.hpp"
 
-class Field : DrawableObject {
+class Field : public DrawableObject {
 protected:
     ofImage image;
     ofMesh mesh;

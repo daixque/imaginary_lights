@@ -11,7 +11,7 @@
 #include "ofMain.h"
 #include "DrawableObject.hpp"
 
-class RandomRectangles : DrawableObject {
+class RandomRectangles : public DrawableObject {
 protected:
     int number;
     ofVboMesh rectangles;

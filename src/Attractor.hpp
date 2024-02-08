@@ -11,7 +11,7 @@
 #include "ofMain.h"
 #include "DrawableObject.hpp"
 
-class Attractor : DrawableObject {
+class Attractor : public DrawableObject {
 protected:
     float pres, xxmin, xxmax, yymin, yymax; // Parameters for scaling
     float a, b, c, d, e; // Control parameters

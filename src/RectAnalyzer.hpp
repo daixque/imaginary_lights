@@ -11,7 +11,7 @@
 #include "ofMain.h"
 #include "DrawableObject.hpp"
 
-class RectAnalyzer : DrawableObject {
+class RectAnalyzer : public DrawableObject {
 public:
     RectAnalyzer();
     void draw(std::array<float, 128>& fftSmoothed);

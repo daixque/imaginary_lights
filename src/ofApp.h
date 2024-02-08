@@ -51,7 +51,7 @@ class ofApp : public ofBaseApp{
 		void setup() override;
 		void update() override;
 		void draw() override;
-        void audioIn(float * input, int bufferSize, int nChannels);
+        void audioIn(float * input, int bufferSize, int nChannels) override;
 		void exit() override;
 
 		void keyPressed(int key) override;

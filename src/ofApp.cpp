@@ -126,10 +126,10 @@ void ofApp::draw(){
     
     //rectAnalyzer.draw(fftSmoothed);
     //attractor.draw();
-    //field.draw(fftSmoothed);
+    field.draw(fftSmoothed);
     
     //cubes.draw();
-    rects.draw();
+    //rects.draw();
     
     //cam.end();
     cameraMovement.end();

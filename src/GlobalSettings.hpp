@@ -13,7 +13,7 @@
 class GlobalSettings {
 private:
     // Private Constructor
-    GlobalSettings();
+    GlobalSettings() {}
 
     // Stop the compiler generating methods of copy the object
     GlobalSettings(GlobalSettings const& copy);            // Not Implemented
