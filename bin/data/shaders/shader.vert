@@ -4,6 +4,7 @@ uniform mat4 modelViewProjectionMatrix;
 uniform float time;
 in vec4 position;
 in float vertexIndex;
+out vec4 vColor;
 
 float random(vec2 st) {
     vec2 a = vec2(12.9898,78.233);

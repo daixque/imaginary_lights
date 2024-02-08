@@ -50,7 +50,7 @@ void RandomRectangles::setup() {
 }
 
 void RandomRectangles::draw() {
-    ofBackground(GlobalSettings::getInstance().rose);
+    ofBackground(GlobalSettings::getInstance().khaki);
     ofPushMatrix();
     //ofSetColor(GlobalSettings::getInstance().lineColor);
     position.z += 1;

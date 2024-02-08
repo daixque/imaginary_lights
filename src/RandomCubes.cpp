@@ -8,6 +8,7 @@
 #include "RandomCubes.hpp"
 
 RandomCubes::RandomCubes() : DrawableObject() {
+    image.load("Wind-God-Fujin-and-Thunder-God-Raijin-by-Tawaraya-Sotatsu.png");
     int gridSize = 10;
     float spacing = 200;
     float baseSize = 10;
@@ -26,6 +27,9 @@ RandomCubes::RandomCubes() : DrawableObject() {
 
 void RandomCubes::draw() {
     ofBackground(GlobalSettings::getInstance().nude);
+    image.draw(-image.getWidth() / 2.0, -image.getHeight() / 2.0, -1000);
+    image.draw(-image.getWidth() / 2.0, -image.getHeight() / 2.0, 100);
+    
     shader.begin();
     for (auto& box : boxes) {
         box.draw();
