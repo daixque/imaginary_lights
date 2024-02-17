@@ -12,10 +12,14 @@
 #include "DrawableObject.hpp"
 
 class RectAnalyzer : public DrawableObject {
+protected:
+    std::array<float, 128>* fftSmoothed;
+    
 public:
     RectAnalyzer();
     void setup(Timer* timer) override;
-    void draw(std::array<float, 128>& fftSmoothed);
+    void setFFT(std::array<float, 128>* fftSmoothed);
+    void draw() override;
 };
 
 #endif /* RectAnalyzer_hpp */

@@ -21,7 +21,7 @@ void main() {
 
     // Add the wave to the y-coordinate of the position
     vec4 newPosition = position;
-    newPosition.y += wave + newPosition.y;
+    newPosition.y += (wave + newPosition.y) * 1.5;
 
     // Transform the position to clip space
     gl_Position = modelViewProjectionMatrix * newPosition;

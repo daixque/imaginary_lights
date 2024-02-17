@@ -19,7 +19,7 @@ protected:
 public:
     RandomCubes();
     void setup(Timer* timer) override;
-    void draw();
+    void draw() override;
 };
 
 #endif /* RandomCubes_hpp */

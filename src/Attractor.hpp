@@ -20,6 +20,6 @@ protected:
 public:
     Attractor();
     void setup(Timer* timer) override;
-    void draw();
+    void draw() override;
 };
 #endif /* Atractor_hpp */

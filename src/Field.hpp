@@ -16,11 +16,13 @@ protected:
     ofImage image;
     ofMesh mesh;
     ofShader shader;
+    std::array<float, 128>* fftSmoothed;
     
 public:
     Field();
     void setup(Timer* timer) override;
-    void draw(std::array<float, 128>& fftSmoothed);
+    void setFFT(std::array<float, 128>* fftSmoothed);
+    void draw() override;
 };
 
 #endif /* Field_hpp */

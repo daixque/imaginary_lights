@@ -22,7 +22,8 @@ Field::Field() : DrawableObject() {
             float y = ofMap(brightness, 0, 255, -10, 10);
 
             // Add a vertex at (x, y, z)
-            mesh.addVertex(ofVec3f(x, y, z));
+            //mesh.addVertex(ofVec3f(x, y, z));
+            mesh.addVertex(ofVec3f(x - image.getWidth() / 2.0, y, z - image.getHeight() / 2.0));
             
             // Get the color of the pixel and add the color to the mesh
             ofColor color = image.getColor(x, z);
@@ -44,14 +45,24 @@ Field::Field() : DrawableObject() {
             mesh.addIndex(i + image.getHeight());
         }
     }
+    
+    ofLog() << "Field mesh vertices: " << mesh.getVertices().size();
+    ofLog() << "Field mesh indides: " << mesh.getIndices().size();
 }
 
 void Field::setup(Timer* timer) {
-    DrawableObject::setup(timer);
+    cameraMovement.loadCSV("camera/camera_field.csv");
+    this->timer = timer;
     shader.load("shaders/shader.vert", "shaders/shader.frag");
 }
 
-void Field::draw(std::array<float, 128>& fftSmoothed) {
+
+void Field::setFFT(std::array<float, 128> *fftSmoothed) {
+    this->fftSmoothed = fftSmoothed;
+}
+
+void Field::draw() {
+    if (!fftSmoothed) return;
     if (!timer) return;
     
     cameraMovement.begin(timer->getElapsedTime());
@@ -59,9 +70,9 @@ void Field::draw(std::array<float, 128>& fftSmoothed) {
     ofBackground(GlobalSettings::getInstance().liteGray);
     ofPushMatrix();
     
-    ofTranslate(glm::vec3(-image.getWidth() / 2.0, 0, -image.getHeight() / 2.0));
+    //ofTranslate(glm::vec3(-image.getWidth() / 2.0, 0, -image.getHeight() / 2.0));
     
-    float yScale = (fftSmoothed[2] + 0.2);
+    float yScale = ((*fftSmoothed)[2] + 0.2);
     ofScale(glm::vec3(2.0f, yScale, 2.0f));
     
     

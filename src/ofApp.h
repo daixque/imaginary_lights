@@ -42,6 +42,8 @@ class ofApp : public ofBaseApp{
     Field field;
     RandomCubes cubes;
     RandomRectangles rects;
+    
+    DrawableObject* currentTarget;
 
 	public:
 		void setup() override;

@@ -23,7 +23,7 @@ public:
     DrawableObject();
     
     virtual void setup(Timer* timer);
-    void draw();
+    virtual void draw();
 };
 
 

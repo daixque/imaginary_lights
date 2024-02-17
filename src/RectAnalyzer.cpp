@@ -15,15 +15,20 @@ void RectAnalyzer::setup(Timer* timer) {
     DrawableObject::setup(timer);
 }
 
-void RectAnalyzer::draw(std::array<float, 128>& fftSmoothed) {
+void RectAnalyzer::setFFT(std::array<float, 128> *fftSmoothed) {
+    this->fftSmoothed = fftSmoothed;
+}
+
+void RectAnalyzer::draw() {
+    if (!fftSmoothed) return;
     if (timer) {
         cameraMovement.begin(timer->getElapsedTime());
         ofBackground(GlobalSettings::getInstance().dark);
         
         float c = 255.0f;
         ofSetColor(GlobalSettings::getInstance().lineColor);
-        for (int i = 0; i < fftSmoothed.size(); i++) {
-            float v = fftSmoothed[i];
+        for (int i = 0; i < fftSmoothed->size(); i++) {
+            float v = (*fftSmoothed)[i];
             float deg = ofMap(v, 0.0f, 1.0f, 0.f, 360.f);
             
             ofPushMatrix();

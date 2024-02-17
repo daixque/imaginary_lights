@@ -3,9 +3,10 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     scene = 1;
-    player.load("imaginary+lights.mp3");
+    player.load("imaginary+lights+short.mp3");
     //cameraMovement.loadCSV("camera.csv");
     
+    ofSetFrameRate(60);
     
     /*
     ofSetFrameRate(30);
@@ -17,20 +18,25 @@ void ofApp::setup(){
     channels = 2;
     fileName = "testMovie";
     fileExt = ".mov";
-    
-    vidRecorder.setVideoCodec("mpeg4");
-    vidRecorder.setVideoBitrate("800k");
-    vidRecorder.setAudioCodec("mp3");
-    vidRecorder.setAudioBitrate("192k");
-    vidRecorder.setup("output.mp4", ofGetWidth(), ofGetHeight(), 30); // Set the output file name and size
-    
-    
-    ofAddListener(vidRecorder.outputFileCompleteEvent, this, &ofApp::recordingComplete);
-    soundStream.setup(this, 0, channels, sampleRate, 256, 4);
-
-    ofSetWindowShape(vidGrabber.getWidth(), vidGrabber.getHeight()    );
-    bRecording = false;
      */
+    
+//    vidRecorder.setVideoCodec("mpeg4");
+//    vidRecorder.setVideoBitrate("800k");
+//    vidRecorder.setAudioCodec("mp3");
+//    vidRecorder.setAudioBitrate("192k");
+//    vidRecorder.setup("output.mp4", ofGetWidth(), ofGetHeight(), 30); // Set the output file name and size
+  
+//    ofSetFrameRate(30); // It's important to set a frame rate for smooth video
+//    vidRecorder.setFfmpegLocation("/Users/daixque/local/homebrew/bin/ffmpeg"); // Use the correct location of ffmpeg
+//    vidRecorder.setup("myVideo.mov", ofGetWidth(), ofGetHeight(), 30); // name of output file, width, height, frameRate
+//    vidRecorder.start();
+    
+//    ofAddListener(vidRecorder.outputFileCompleteEvent, this, &ofApp::recordingComplete);
+//    soundStream.setup(this, 0, channels, sampleRate, 256, 4);
+//
+//    ofSetWindowShape(vidGrabber.getWidth(), vidGrabber.getHeight()    );
+//    bRecording = false;
+    
     cout << "OpenGL version :" << glGetString(GL_VERSION) << endl;
     cout << "GLSL version :" << glGetString(GL_SHADING_LANGUAGE_VERSION) << endl;
     
@@ -39,6 +45,11 @@ void ofApp::setup(){
     field.setup(&timer);
     cubes.setup(&timer);
     rectAnalyzer.setup(&timer);
+    field.setFFT(&fftSmoothed);
+    rectAnalyzer.setFFT(&fftSmoothed);
+    attractor.setup(&timer);
+    
+    currentTarget = &field;
 }
 
 
@@ -81,28 +92,36 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    //cam.begin();
-    //cameraMovement.begin(timer.getElapsedTime());
-    
-    switch (scene) {
-        case 1:
-            rectAnalyzer.draw(fftSmoothed);
-            break;
-        case 2:
-            field.draw(fftSmoothed);
-            break;
-        case 3:
-            rects.draw();
-            break;
-        case 4:
-            cubes.draw();
-            break;
-        default:
-            break;
+    if (currentTarget) {
+        currentTarget->draw();
     }
+//    switch (scene) {
+//        case 1:
+//            rectAnalyzer.draw();
+//            break;
+//        case 2:
+//            field.draw();
+//            break;
+//        case 3:
+//            rects.draw();
+//            break;
+//        case 4:
+//            cubes.draw();
+//            break;
+//        default:
+//            break;
+//    }
     
-    //cam.end();
-    //cameraMovement.end();
+//    
+//    ofPixels pixels;
+//    ofImage img;
+//    int width = ofGetWidth();
+//    int height = ofGetHeight();
+//    img.grabScreen(0, 0, width, height);
+//    pixels = img.getPixels();
+//    vidRecorder.addFrame(pixels);
+    
+//    ofLog() << "Frame rate: " << ofGetFrameRate();
 }
 
 void ofApp::audioIn(float *input, int bufferSize, int nChannels){
@@ -114,7 +133,7 @@ void ofApp::audioIn(float *input, int bufferSize, int nChannels){
 void ofApp::exit(){
 
 //    ofRemoveListener(vidRecorder.outputFileCompleteEvent, this, &ofApp::recordingComplete);
-//    vidRecorder.close();
+    vidRecorder.close();
 }
 
 //--------------------------------------------------------------
@@ -140,20 +159,23 @@ void ofApp::keyReleased(int key){
             break;
         
         case '1':
-            scene = 1;
+            currentTarget = &rectAnalyzer;
             break;
         case '2':
-            scene = 2;
+            currentTarget = &field;
             break;
         case '3':
-            scene = 3;
+            currentTarget = &rects;
             rects.reset();
             break;
         case '4':
-            scene = 4;
+            currentTarget = &cubes;
+            break;
+        case '5':
+            currentTarget = &attractor;
             break;
         case '0':
-            scene = 0;
+            currentTarget = &field;
             break;
 
         /*

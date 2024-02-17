@@ -20,7 +20,7 @@ protected:
 public:
     RandomRectangles();
     void setup(Timer* timer) override;
-    void draw();
+    void draw() override;
     void reset();
 };
 
