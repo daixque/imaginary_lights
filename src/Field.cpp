@@ -101,24 +101,6 @@ void Field::draw() {
     
     shader.end();
     
-    /*
-    // Create a copy of the original mesh
-    ofMesh tempMesh = mesh;
-
-    // Modify the y-coordinate of each vertex
-    for(int i = 0; i < tempMesh.getNumVertices(); i++) {
-        ofVec3f vertex = tempMesh.getVertex(i);
-
-        // Add a random wave to the y-coordinate
-        float wave = ofNoise(ofGetElapsedTimef() + i * 0.1) * 10.0;
-        vertex.y += wave;
-
-        tempMesh.setVertex(i, vertex);
-    }
-
-    tempMesh.drawWireframe();
-    // */
-    
     ofPopMatrix();
     
     cameraMovement.end();

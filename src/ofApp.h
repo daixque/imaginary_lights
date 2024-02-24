@@ -1,42 +1,21 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxVideoRecorder.h"
 #include "RectAnalyzer.hpp"
 #include "Attractor.hpp"
 #include "Field.hpp"
 #include "Timer.h"
-//#include "CameraMovement.hpp"
 #include "RandomCubes.hpp"
 #include "GlobalSettings.hpp"
 #include "RandomRectangles.hpp"
 
 class ofApp : public ofBaseApp{
-
-	protected:
-    ofVideoGrabber      vidGrabber;
-    ofxVideoRecorder vidRecorder;
-    ofSoundStream soundStream;
-    bool bRecording;
-    int sampleRate;
-    int channels;
-    string fileName;
-    string fileExt;
-    
-    ofVbo vbo; // Vertex Buffer Object
-    vector<ofVec3f> vertices; // Vertices for our particles
-    
     Timer timer;
-    
-    ofEasyCam cam; // Camera for rotating and zooming
     
     ofSoundPlayer player;
     static constexpr size_t nBandsToGet = 128;
     std::array<float, nBandsToGet> fftSmoothed{{0}};
     RectAnalyzer rectAnalyzer;
-    
-//    CameraMovement cameraMovement;
-    int scene;
     
     Attractor attractor;
     Field field;
@@ -64,6 +43,4 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h) override;
 		void dragEvent(ofDragInfo dragInfo) override;
 		void gotMessage(ofMessage msg) override;
-		
-        void recordingComplete(ofxVideoRecorderOutputFileCompleteEventArgs& args);
 };

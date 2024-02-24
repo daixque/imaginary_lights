@@ -16,6 +16,7 @@ protected:
     float pres, xxmin, xxmax, yymin, yymax; // Parameters for scaling
     float a, b, c, d, e; // Control parameters
     int iter1, iter2; // Number of iterations
+    ofVboMesh lineMesh;
     
 public:
     Attractor();

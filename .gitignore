@@ -1,7 +1,14 @@
 # Ignore build artifacts
 build/
-bin/
+
 obj/
+
+bin/*.app
+*.jpg
+*.mp3
+*.m4a
+*.mov
+memo.md
 
 # Ignore IDE files
 .vscode/
@@ -30,7 +37,7 @@ obj/
 /node_modules/
 
 # Ignore Xcode specific files
-*.xcodeproj
+#*.xcodeproj
 *.xcworkspace
 *.xcuserstate
 *.pbxproj
@@ -39,6 +46,7 @@ obj/
 *.perspectivev3
 *.xccheckout
 *.xcscmblueprint
+Breakpoints*
 
 # Ignore Xcode build files
 DerivedData/

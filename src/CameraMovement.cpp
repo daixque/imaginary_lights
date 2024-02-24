@@ -54,13 +54,7 @@ CameraData CameraMovement::getCameraDataAtTime(float time) {
     return result;
 }
 /*/
-
-glm::vec3 catmullRomInterpolation(const glm::vec3& p0, const glm::vec3& p1, const glm::vec3& p2, const glm::vec3& p3, float t) {
-    float t2 = t * t;
-    float t3 = t2 * t;
-    return 0.5f * ((2.0f * p1) + (-p0 + p2) * t + (2.0f * p0 - 5.0f * p1 + 4.0f * p2 - p3) * t2 + (-p0 + 3.0f * p1 - 3.0f * p2 + p3) * t3);
-}
-
+// Camera motion implementation with custom imterpolation curve
 CameraData CameraMovement::getCameraDataAtTime(float time) {
     // Find the first data point that has a time greater than the given time
     auto it = std::upper_bound(cameraData.begin(), cameraData.end(), time, [](float t, const CameraData& data) {
@@ -84,6 +78,12 @@ CameraData CameraMovement::getCameraDataAtTime(float time) {
     result.direction = catmullRomInterpolation(p0.direction, p1.direction, p2.direction, p3.direction, t);
     return result;
 }
+ 
+ glm::vec3 catmullRomInterpolation(const glm::vec3& p0, const glm::vec3& p1, const glm::vec3& p2, const glm::vec3& p3, float t) {
+     float t2 = t * t;
+     float t3 = t2 * t;
+     return 0.5f * ((2.0f * p1) + (-p0 + p2) * t + (2.0f * p0 - 5.0f * p1 + 4.0f * p2 - p3) * t2 + (-p0 + 3.0f * p1 - 3.0f * p2 + p3) * t3);
+ }
  */
 
 void CameraMovement::begin(float time)

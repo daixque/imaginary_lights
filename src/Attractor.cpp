@@ -26,12 +26,7 @@ Attractor::Attractor() : DrawableObject() {
 
 void Attractor::setup(Timer* timer) {
     DrawableObject::setup(timer);
-}
-
-void Attractor::draw() {
-    if (!timer) return;
     
-    cameraMovement.begin(timer->getElapsedTime());
     
     float xinc = pres / (xxmax - xxmin); // Controls x-pixel position
     float yinc = pres / (yymax - yymin); // Controls y-pixel position
@@ -41,6 +36,9 @@ void Attractor::draw() {
     int count = 0;
     //int j = ofGetFrameNum();
     // Iteration loops
+    lineMesh.setMode(OF_PRIMITIVE_LINES);
+
+    
     for(int j = 0; j < iter1; j++){
         for(int i = 0; i < iter2; i++){
             float xx = sin(a * y) - z * cos(b * x);
@@ -66,15 +64,26 @@ void Attractor::draw() {
 //                } else {
 //                    //ofSetColor(255, 255, 255);
 //                }
-                ofSetColor(255, 255, 255);
                 float tone = ofMap(z, 0.0f, e, 0.0f, 255.0f);
-                ofPushMatrix();
-                ofTranslate(glm::vec3(0, 0, zz * -100));
-                ofDrawCircle(xxx, yyy, 1);
-                ofPopMatrix();
+                ofSetColor(255, 255, 255);
+            
+                lineMesh.addVertex(ofVec3f(xxx - pres / 2.0, yyy - pres / 2.0,  zz * -100));
                 count++;
             }
         }
     }
+}
+
+void Attractor::draw() {
+    if (!timer) return;
+    
+    ofBackground(30, 30, 30);
+    cameraMovement.begin(timer->getElapsedTime());
+    
+    // Then in your draw function:
+    ofSetColor(255, 255, 255, 30);
+    ofScale(0.5, 0.5, 0.5);
+    lineMesh.draw();
+    
     cameraMovement.end();
 }
