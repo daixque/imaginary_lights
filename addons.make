@@ -1,3 +1,1 @@
 ofxCsv
-ofxOsc
-ofxVideoRecorder
